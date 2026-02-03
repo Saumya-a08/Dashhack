@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinSmart | Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" aria-label="FS Coin" class="brand">
+                <!-- <span class="logo-icon">Fs.</span> FinSmart -->
+                <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Gold gradient -->
+                        <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#FFD700" />
+                            <stop offset="50%" stop-color="#FFC107" />
+                            <stop offset="100%" stop-color="#B8860B" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Coin border -->
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="url(#gold)" stroke-width="8" />
+
+                    <!-- Inner ring -->
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="url(#gold)" stroke-width="2" />
+
+                    <!-- FS text -->
+                    <text x="100" y="120" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="64"
+                        font-weight="700" letter-spacing="2" fill="url(#gold)">
+                        FS
+                    </text>
+                </svg>
+                <!-- Brand name -->
+                <span class="brand-text">
+                    <span class="gold fs-letter">F</span>in<span class="gold fs-letter">S</span>mart
+                </span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Overview</a></li>
+            <li><a href="simulator.html" class="active">Simulator</a></li>
+            <li><a href="about.html">Who We Are?</a></li>
+        </ul>
+    </nav>
+
+    <section class="tool-section">
+        <div class="tool-header">
+            <h1>Budget Simulator.</h1>
+            <p>Input your monthly details. We calculate your potential savings.</p>
+        </div>
+
+        <div class="tool-grid">
+            <div class="panel input-panel">
+                <h3>Monthly Inflow & Outflow</h3>
+
+                <div class="input-group">
+                    <label>Net Monthly Income/Allowance (₹)</label>
+                    <input type="number" id="income" placeholder="5000">
+                </div>
+
+                <div class="input-group">
+                    <label>Rent / Mortgage (₹)</label>
+                    <input type="number" id="rent" placeholder="1500">
+                </div>
+
+                <div class="input-group loan-toggle-row">
+                    <label>Education Loan?</label>
+                    <div class="toggle-container">
+                        <button type="button" class="toggle-btn left" id="loan-no"
+                            onclick="toggleLoan(false)">No</button>
+                        <button type="button" class="toggle-btn right" id="loan-yes"
+                            onclick="toggleLoan(true)">Yes</button>
+                    </div>
+                </div>
+
+                <div id="loan-details">
+                    <div class="input-group">
+                        <label>Amount Loaned (₹)</label>
+                        <input type="number" id="loan-amount" placeholder="e.g. 500000" oninput="calculateEMI()">
+                    </div>
+                    <div class="input-group">
+                        <label>Rate of Interest (%)</label>
+                        <input type="number" step="0.1" id="loan-interest-rate" placeholder="e.g. 8.5"
+                            oninput="calculateEMI()">
+                    </div>
+                    <div class="input-group">
+                        <label>Time Period (Months)</label>
+                        <input type="number" id="loan-time-period" placeholder="e.g. 10" oninput="calculateEMI()">
+                    </div>
+                    <div class="input-group">
+                        <label>Date when loan taken</label>
+                        <input type="date" id="loan-start-date" oninput="calculateEMI()">
+                    </div>
+                    <div class="input-group">
+                        <label>Amount paid till date (₹)</label>
+                        <input type="number" placeholder="e.g. 50000" id="amount-paid" oninput="calculateEMI()">
+                    </div>
+                    <div class="input-group">
+                        <label>Months Remaining</label>
+                        <div style="padding: 12px; background: var(--input-bg); border-radius: 8px; border: 1px solid var(--border-color); color: var(--accent); font-weight: 600; text-align: center; font-size: 1.1rem;"
+                            id="months-remaining-display">-</div>
+                    </div>
+                    <div class="input-group">
+                        <label>Total Amount Remaining</label>
+                        <div style="padding: 12px; background: var(--input-bg); border-radius: 8px; border: 1px solid var(--border-color); color: var(--accent); font-weight: 600; text-align: center; font-size: 1.1rem;"
+                            id="amount-remaining-display">-</div>
+                    </div>
+                    <div class="input-group">
+                        <label>Monthly EMI Deduction (₹)</label>
+                        <div style="padding: 12px; background: var(--input-bg); border-radius: 8px; border: 1px solid var(--border-color); color: #32d74b; font-weight: 600; text-align: center; font-size: 1.1rem;"
+                            id="monthly-emi-display">-</div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Essential Utilities (₹)</label>
+                    <input type="number" id="utilities" placeholder="300">
+                </div>
+
+                <div class="input-group">
+                    <label>Other Expenses (₹)</label>
+                    <input type="number" id="other" placeholder="500">
+                </div>
+
+                <button class="btn btn-full" onclick="calculate()">Simulate</button>
+                <div id="warning-msg" class="warning hidden">⚠️ Warning: Expenses exceed income!</div>
+            </div>
+
+            <div class="panel result-panel">
+                <h3>Projected Breakdown</h3>
+                <div class="chart-container">
+                    <canvas id="budgetChart"></canvas>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-box">
+                        <span class="label">Projected Savings</span>
+                        <span class="value" id="savings-val">-</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="label">Health Score</span>
+                        <span class="value" id="health-val">-</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-outline" onclick="generateAIReport()">📄 Detailed AI Report</button>
+                <div id="ai-report-box" class="ai-report-text hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleLoan(isYes) {
+            const loanSection = document.getElementById('loan-details');
+            const yesBtn = document.getElementById('loan-yes');
+            const noBtn = document.getElementById('loan-no');
+
+            if (isYes) {
+                loanSection.classList.add('show'); // Triggers the CSS animation
+                yesBtn.classList.add('active');
+                noBtn.classList.remove('active');
+            } else {
+                loanSection.classList.remove('show'); // Reverses the animation
+                noBtn.classList.add('active');
+                yesBtn.classList.remove('active');
+
+                // RESET loan input fields
+                document.getElementById('loan-amount').value = 0;
+                document.getElementById('loan-interest-rate').value = 0;
+                document.getElementById('loan-time-period').value = 0;
+                document.getElementById('loan-start-date').value = '';
+                document.getElementById('amount-paid').value = 0;
+
+                // RESET loan output displays
+                document.getElementById('monthly-emi-display').textContent = '₹0.00';
+                document.getElementById('months-remaining-display').textContent = '-';
+                document.getElementById('amount-remaining-display').textContent = '-';
+
+                // Recalculate budget without EMI
+                calculate();
+            }
+        }
+
+        // Initialize state
+        toggleLoan(false);
+    </script>
+</body>
+
+</html>

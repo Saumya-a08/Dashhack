@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinSmart | About</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" aria-label="FS Coin" class="brand">
+                <!-- <span class="logo-icon">Fs.</span> FinSmart -->
+                <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Gold gradient -->
+                        <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#FFD700" />
+                            <stop offset="50%" stop-color="#FFC107" />
+                            <stop offset="100%" stop-color="#B8860B" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Coin border -->
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="url(#gold)" stroke-width="8" />
+
+                    <!-- Inner ring -->
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="url(#gold)" stroke-width="2" />
+
+                    <!-- FS text -->
+                    <text x="100" y="120" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="64"
+                        font-weight="700" letter-spacing="2" fill="url(#gold)">
+                        FS
+                    </text>
+                </svg>
+                <!-- Brand name -->
+                <span class="brand-text">
+                    <span class="gold fs-letter">F</span>in<span class="gold fs-letter">S</span>mart
+                </span>
+            </a>
+
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Overview</a></li>
+            <li><a href="simulator.html">Simulator</a></li>
+            <li><a href="about.html" class="active">Who We Are?</a></li>
+        </ul>
+    </nav>
+
+    <section class="section-pad">
+        <div class="container">
+            <div class="text-block">
+                <h1 class="section-title">About FinSmart.</h1>
+                <p class="section-desc">
+                    Born from the DASHHACK 1.0 initiative, FinSmart addresses the critical gap in financial literacy
+                    among young adults.
+                </p>
+                <p class="section-desc">
+                    Our mission is simple: To turn financial anxiety into financial clarity through intuitive,
+                    data-driven tools. We believe that when you can visualize your money, you can master it.
+                </p>
+            </div>
+            <div class="image-block">
+                <img src="images/About_Us.jpeg" alt="Team Meeting">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 FinSmart Inc. Built for DASHHACK 1.0.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

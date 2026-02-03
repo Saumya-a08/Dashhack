@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinSmart | Financial Clarity</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <video id="bg-video" autoplay muted loop playsinline poster="images/Index_banner.png">
+        <source src="images/Bg_video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" aria-label="FS Coin" class="brand">
+                <!-- <span class="logo-icon">Fs.</span> FinSmart -->
+                <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Gold gradient -->
+                        <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#FFD700" />
+                            <stop offset="50%" stop-color="#FFC107" />
+                            <stop offset="100%" stop-color="#B8860B" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Coin border -->
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="url(#gold)" stroke-width="8" />
+
+                    <!-- Inner ring -->
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="url(#gold)" stroke-width="2" />
+
+                    <!-- FS text -->
+                    <text x="100" y="120" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="64"
+                        font-weight="700" letter-spacing="2" fill="url(#gold)">
+                        FS
+                    </text>
+                </svg>
+                <!-- Brand name -->
+                <span class="brand-text">
+                    <span class="gold fs-letter">F</span>in<span class="gold fs-letter">S</span>mart
+                </span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Overview</a></li>
+            <li><a href="simulator.html">Simulator</a></li>
+            <li><a href="about.html">Who We Are?</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in">Master your money.<br>With zero anxiety.</h1>
+            <p class="fade-in delay-1">The gap between earning and understanding ends here. A smart simulator for the
+                modern economy.</p>
+            <div class="cta-group fade-in delay-2">
+                <a href="simulator.html" class="btn btn-primary">Launch Simulator</a>
+                <a href="about.html" class="btn btn-text">Who we are &rarr;</a>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="ticker">
+        <div class="ticker-track">
+        <span><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2221458&reg=3&lang=2" target="_blank" rel="noopener noreferrer">📊 Union Budget 2026 - 2027</a></span>
+        <span><a href="https://www.iciciprulife.com/insurance-library/income-tax/file-itr-online.html" target="_blank" rel="noopener noreferrer">🏦 How to File ITR Online?</a></span>
+        <span><a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer">💰 Student Scholarships</a></span>
+        <span><a href="https://www.dezerv.in/campaigns/financial-planning/" target="_blank" rel="noopener noreferrer">📈 Financial Consultancy</a></span>
+
+        <span><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2221458&reg=3&lang=2" target="_blank" rel="noopener noreferrer">📊 Union Budget 2026 - 2027</a></span>
+        <span><a href="https://www.iciciprulife.com/insurance-library/income-tax/file-itr-online.html" target="_blank" rel="noopener noreferrer">🏦 How to File ITR Online?</a></span>
+        <span><a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer">💰 Student Scholarships</a></span>
+        <span><a href="https://www.dezerv.in/campaigns/financial-planning/" target="_blank" rel="noopener noreferrer">📈 Financial Consultancy</a></span>
+    </div>
+    </div>
+
+
+    <div class="hero-image">
+        <img src="images/Index_banner.png" alt="Dark Mode Financial Dashboard">
+    </div>
+
+
+
+    <div class="chatbot-widget">
+        <div class="chat-window hidden" id="chat-window">
+            <div class="chat-header">
+                <div class="bot-avatar">FS.</div>
+                <div class="header-info">
+                    <span>FinSmart Assistant</span>
+                    <div class="status-indicator">Online</div>
+                </div>
+                <div class="close-btn" onclick="toggleChat()">×</div>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="msg bot-msg">Hello! I'm your FinSmart guide. How can I help you today?</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type your message..."
+                    onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+        <button class="chat-toggle" onclick="toggleChat()">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 FinSmart Inc. Built for DASHHACK 1.0.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleChat() {
+            const window = document.getElementById('chat-window');
+            window.classList.toggle('hidden');
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const body = document.getElementById('chat-body');
+            const text = input.value.trim();
+
+            if (text) {
+                // User Message
+                const userDiv = document.createElement('div');
+                userDiv.className = 'msg user-msg';
+                userDiv.textContent = text;
+                body.appendChild(userDiv);
+
+                input.value = '';
+                body.scrollTop = body.scrollHeight; // Auto scroll
+
+                // Bot Response (Delayed slightly for realism)
+                setTimeout(() => {
+                    const botDiv = document.createElement('div');
+                    botDiv.className = 'msg bot-msg';
+                    botDiv.textContent = "You can use our Simulator to plan and handle all your finances. Click on the 'Launch Simulator' option in the homepage to do so.";
+                    body.appendChild(botDiv);
+                    body.scrollTop = body.scrollHeight;
+                }, 600);
+            }
+        }
+    </script>
+</body>
+
+</html>
